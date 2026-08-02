@@ -5,7 +5,6 @@ from dataclasses import dataclass
 import cv2
 import numpy as np
 
-
 Color = tuple[int, int, int]
 
 
@@ -34,7 +33,6 @@ class Block:
 
         d = self.depth
 
-
         # -----------------------
         # Top face
         # -----------------------
@@ -55,9 +53,8 @@ class Block:
             self.light_color(),
         )
 
-
         # -----------------------
-        # Right side face
+        # Right face
         # -----------------------
 
         side_face = np.array(
@@ -76,7 +73,6 @@ class Block:
             self.dark_color(),
         )
 
-
         # -----------------------
         # Front face
         # -----------------------
@@ -89,8 +85,8 @@ class Block:
             -1,
         )
 
-
         # Blend transparency
+
         cv2.addWeighted(
             overlay,
             self.alpha,
@@ -100,8 +96,8 @@ class Block:
             frame,
         )
 
-
         # Cube outline
+
         cv2.polylines(
             frame,
             [
@@ -123,7 +119,6 @@ class Block:
             2,
         )
 
-
     def light_color(self) -> Color:
         """
         Brighter top surface.
@@ -136,7 +131,6 @@ class Block:
             min(g + 60, 255),
             min(r + 60, 255),
         )
-
 
     def dark_color(self) -> Color:
         """
@@ -151,7 +145,6 @@ class Block:
             r // 2,
         )
 
-
     def contains(
         self,
         point: tuple[int, int],
@@ -161,6 +154,5 @@ class Block:
 
         return (
             self.x <= px <= self.x + self.width
-            and
-            self.y <= py <= self.y + self.height
+            and self.y <= py <= self.y + self.height
         )
