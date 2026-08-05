@@ -17,6 +17,7 @@ class Block:
     color: Color
     depth: int = 25
     alpha: float = 0.45
+    selected: bool = False
 
     def draw(self, frame: np.ndarray) -> None:
         """
@@ -96,6 +97,17 @@ class Block:
             frame,
         )
 
+        # Selection highlight
+
+        if self.selected:
+            cv2.rectangle(
+                frame,
+                (x1 - 3, y1 - 3),
+                (x2 + 3, y2 + 3),
+                (0, 255, 255),
+                3,
+            )
+
         # Cube outline
 
         cv2.polylines(
@@ -149,7 +161,6 @@ class Block:
         self,
         point: tuple[int, int],
     ) -> bool:
-
         px, py = point
 
         return (
