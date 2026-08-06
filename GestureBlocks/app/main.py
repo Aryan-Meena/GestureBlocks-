@@ -23,6 +23,7 @@ Color: TypeAlias = tuple[int, int, int]
 
 
 # OpenCV uses BGR colors
+# Might change these later 
 GREEN: Color = (0, 255, 0)
 YELLOW: Color = (255, 255, 0)
 ORANGE: Color = (0, 200, 255)
